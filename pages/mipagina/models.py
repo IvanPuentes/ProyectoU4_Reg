@@ -27,7 +27,12 @@ class Ciudad(models.Model):
 
 #modelo de hospedaje en la base de datos 
 class Hospedaje(models.Model):
-    ciudad = models.TextField(default="")
+    ciudad = models.ForeignKey(
+        Ciudad,
+        default="",
+        on_delete= models.CASCADE,
+        related_name="ciudad",
+    )
     beneficios = models.TextField(default="")
     presio = models.TextField(default="")
     img =models.ImageField(null=True, blank=True, upload_to="images/")
@@ -45,7 +50,12 @@ class Hospedaje(models.Model):
 
 #modelo de vuelo en la base de datos 
 class Vuelo(models.Model):
-    ciudad = models.TextField(default="")
+    ciudad = models.ForeignKey(
+        Ciudad,
+        default="",
+        on_delete= models.CASCADE,
+        related_name="ciudadVue",
+    )
     descrpicion = models.TextField(default="")
     escala = models.TextField(default="")
     presio = models.TextField(default="")
@@ -64,7 +74,12 @@ class Vuelo(models.Model):
 
 #modelo de viaje en la base de datos 
 class Viaje(models.Model):
-    ciudad = models.TextField(default="")
+    ciudad = models.ForeignKey(
+        Ciudad,
+        default="",
+        on_delete= models.CASCADE,
+        related_name="ciudadV",
+    )
     descrpicion = models.TextField(default="")
     presio = models.TextField(default="")
     img = models.ImageField(null=True, blank=True, upload_to="images/")

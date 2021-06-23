@@ -1,5 +1,5 @@
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
-from .models import Hospedaje, Viaje, Vuelo, ComentarioVuelo,ComentarioViaje,ComentarioHosp
+from .models import Hospedaje, Viaje, Vuelo, ComentarioVuelo,ComentarioViaje,ComentarioHosp,Ciudad
 from .forms import UsuarioPersCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
@@ -68,6 +68,16 @@ class CreateHospedajeView(LoginRequiredMixin,PermissionRequiredMixin,CreateView)
      context_object_name='Listado1'
      permission_required = ('mipagina.add_access')
      login_url = 'account_login'
+
+class CreateCiudadView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+     model = Ciudad
+     success_url = reverse_lazy('home')
+     template_name = "createCiudad.html"
+     fields = 'nombre',
+     context_object_name='Listado1'
+     permission_required = ('mipagina.add_access')
+     login_url = 'account_login'
+     
 
 #vista de la pagina para editar los vuelos
 class UpdatePageView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
